@@ -6,11 +6,12 @@ This is an exercise from [docs.flutter.dev/](https://docs.flutter.dev/developmen
 
 This a Flutter application.
 
-To clone and run this application, you'll need Git and Flutter CLI installed on your computer.
+To clone and run this application, you'll need Git and Flutter CLI installed on your computer and
+use an Emulator.
 
 - `git clone https://github.com/LucasiBai/BuildingLayoutExercise-Flutter.git` to download the code.
 - `cd BuildingLayoutExercise-Flutter` go into the repository.
-- `flutter run --profile` to install all the dependencies.
+- `flutter run --profile` to run app.
 
 
 ## Tools:

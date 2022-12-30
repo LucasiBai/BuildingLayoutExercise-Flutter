@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           title: const Text("Building Layout App"),
         ),
         body: ListView(
-          children:const  [
+          children: const [
             ImgBox(
               asset: "images/lake.jpg",
             ),
@@ -129,10 +129,11 @@ class _FavButtonState extends State<FavButton> {
     );
   }
 
-  void _toggleFav(){
+  void _toggleFav() {
     setState(() {
-      _favouriteCount = _isFavourite? _favouriteCount-1 : _favouriteCount+1;
-       _isFavourite = !_isFavourite;
+      _favouriteCount =
+          _isFavourite ? _favouriteCount - 1 : _favouriteCount + 1;
+      _isFavourite = !_isFavourite;
     });
   }
 }

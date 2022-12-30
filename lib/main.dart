@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     title: "Building Layout App",
     home: MyApp(),
   ));
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           title: const Text("Building Layout App"),
         ),
         body: ListView(
-          children: [
+          children:const  [
             ImgBox(
               asset: "images/lake.jpg",
             ),
@@ -47,13 +47,11 @@ class ImgBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Image.asset(
-        this.asset,
-        width: 600,
-        height: 240,
-        fit: BoxFit.cover,
-      ),
+    return Image.asset(
+      asset,
+      width: 600,
+      height: 240,
+      fit: BoxFit.cover,
     );
   }
 }
@@ -68,7 +66,7 @@ class TitleBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(32, 32, 32, 20),
+      padding: const EdgeInsets.fromLTRB(32, 32, 32, 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -77,27 +75,65 @@ class TitleBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  this.title,
-                  style: TextStyle(fontWeight: FontWeight.w700),
+                  title,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Text(
-                  this.subtitle,
-                  style: TextStyle(color: Colors.black38),
+                  subtitle,
+                  style: const TextStyle(color: Colors.black38),
                 ),
               ],
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.redAccent,
-          ),
-          const Text("41"),
+          const FavButton()
         ],
       ),
     );
+  }
+}
+
+class FavButton extends StatefulWidget {
+  const FavButton({Key? key}) : super(key: key);
+
+  @override
+  State<FavButton> createState() => _FavButtonState();
+}
+
+class _FavButtonState extends State<FavButton> {
+  bool _isFavourite = true;
+  int _favouriteCount = 41;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          padding: const EdgeInsets.all(0),
+          alignment: Alignment.centerRight,
+          icon: (_isFavourite
+              ? const Icon(Icons.star)
+              : const Icon(Icons.star_border)),
+          onPressed: _toggleFav,
+          color: Colors.redAccent,
+        ),
+        SizedBox(
+            width: 18,
+            child: SizedBox(
+              child: Text("$_favouriteCount"),
+            ))
+      ],
+    );
+  }
+
+  void _toggleFav(){
+    setState(() {
+      _favouriteCount = _isFavourite? _favouriteCount-1 : _favouriteCount+1;
+       _isFavourite = !_isFavourite;
+    });
   }
 }
 
@@ -107,10 +143,10 @@ class InteractiveBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+        children: const [
           Button(
             title: "call",
             icon: Icons.phone,
@@ -138,25 +174,23 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            this.icon,
-            color: Colors.blue,
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Text(
-            this.title.toUpperCase(),
-            style: TextStyle(
-                color: Colors.blue, fontSize: 12, fontWeight: FontWeight.w400),
-          )
-        ],
-      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          color: Colors.blue,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          title.toUpperCase(),
+          style: const TextStyle(
+              color: Colors.blue, fontSize: 12, fontWeight: FontWeight.w400),
+        )
+      ],
     );
   }
 }
@@ -169,9 +203,9 @@ class InfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(32),
+      padding: const EdgeInsets.all(32),
       child: Text(
-        this.text,
+        text,
         softWrap: true,
       ),
     );

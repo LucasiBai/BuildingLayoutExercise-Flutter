@@ -19,34 +19,39 @@ class MyApp extends StatelessWidget {
         body: ListView(
           children: [
             ImgBox(
-                url:
-                    "https://shepherdtraveller.com/wp-content/uploads/2021/04/oeschinensee-camping-Lakes-in-Switzerland-1024x683.jpg"),
+              asset: "images/lake.jpg",
+            ),
             TitleBox(
               title: "Oeschimen Lake Campground",
               subtitle: "Kandersteg, Switzerland",
             ),
             InteractiveBox(),
-            InfoBox(text: 'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-                'Alps. Situated 1,578 meters above sea level, it is one of the '
-                'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
-                'half-hour walk through pastures and pine forest, leads you to the '
-                'lake, which warms to 20 degrees Celsius in the summer. Activities '
-                'enjoyed here include rowing, and riding the summer toboggan run.',)
+            InfoBox(
+              text:
+                  'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+                  'Alps. Situated 1,578 meters above sea level, it is one of the '
+                  'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a '
+                  'half-hour walk through pastures and pine forest, leads you to the '
+                  'lake, which warms to 20 degrees Celsius in the summer. Activities '
+                  'enjoyed here include rowing, and riding the summer toboggan run.',
+            )
           ],
         ));
   }
 }
 
 class ImgBox extends StatelessWidget {
-  const ImgBox({Key? key, required this.url}) : super(key: key);
+  const ImgBox({Key? key, required this.asset}) : super(key: key);
 
-  final String url;
+  final String asset;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Image.network(
-        this.url,
+      child: Image.asset(
+        this.asset,
+        width: 600,
+        height: 240,
         fit: BoxFit.cover,
       ),
     );
@@ -63,7 +68,7 @@ class TitleBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(32, 20, 32, 20),
+      padding: EdgeInsets.fromLTRB(32, 32, 32, 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -165,7 +170,10 @@ class InfoBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(32),
-      child: Text(this.text, softWrap: true,),
+      child: Text(
+        this.text,
+        softWrap: true,
+      ),
     );
   }
 }
